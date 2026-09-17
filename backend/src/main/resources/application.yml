@@ -31,7 +31,7 @@ hirehearsal:
     jwt-secret: ${HIREHEARSAL_JWT_SECRET:hirehearsal-dev-secret-change-me-before-deploying-0001}
     token-ttl: 7d
   cors:
-    allowed-origins: ${HIREHEARSAL_CORS_ORIGINS:http://localhost:3000}
+    allowed-origins: ${HIREHEARSAL_CORS_ORIGINS:http://localhost:*,http://127.0.0.1:*}
   rate-limit:
     enabled: true
     interview-requests: 90

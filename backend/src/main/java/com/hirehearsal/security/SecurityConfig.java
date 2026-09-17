@@ -71,7 +71,13 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(HirehearsalProperties properties) {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(properties.cors().allowedOrigins());
+        List<String> origins = properties.cors().allowedOrigins();
+        // Patterns let development cover any localhost port; production sets exact origins.
+        if (origins.stream().anyMatch(origin -> origin.contains("*"))) {
+            config.setAllowedOriginPatterns(origins);
+        } else {
+            config.setAllowedOrigins(origins);
+        }
         config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setExposedHeaders(List.of("Location", "Retry-After"));

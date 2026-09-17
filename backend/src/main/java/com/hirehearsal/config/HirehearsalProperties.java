@@ -40,7 +40,7 @@ public record HirehearsalProperties(
             @DefaultValue("7d") Duration tokenTtl) {
     }
 
-    public record Cors(@DefaultValue("http://localhost:3000") List<String> allowedOrigins) {
+    public record Cors(@DefaultValue({"http://localhost:*", "http://127.0.0.1:*"}) List<String> allowedOrigins) {
     }
 
     public record RateLimit(
