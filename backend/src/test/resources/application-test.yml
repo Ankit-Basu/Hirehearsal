@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:hirehearsal-test;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: false
+
+hirehearsal:
+  llm:
+    # Tests never call a real LLM, even if backend/.env holds keys.
+    api-keys: ""
+  rate-limit:
+    enabled: false
+
+logging:
+  level:
+    com.hirehearsal: INFO

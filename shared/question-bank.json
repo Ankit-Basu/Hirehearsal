@@ -1,0 +1,435 @@
+{
+  "version": 1,
+  "technical": {
+    "topics": [
+      {
+        "id": "dbms",
+        "label": "DBMS & SQL",
+        "keywords": ["dbms", "database*", "sql", "mysql", "postgres*", "normaliz*", "transaction*", "acid", "index*", "join*", "rdbms", "schema*", "nosql", "mongodb"],
+        "questions": {
+          "foundation": [
+            "What is normalization, and what problem does it solve in a relational database?",
+            "Explain the difference between a primary key, a candidate key and a foreign key.",
+            "What do the ACID properties guarantee for a transaction? Give a quick example of each."
+          ],
+          "core": [
+            "Walk me through 1NF, 2NF and 3NF using a single table that you fix step by step.",
+            "How does an index speed up reads, and what does it cost you on writes?",
+            "Compare inner, left and full outer joins. When could a left join quietly hide a bug?"
+          ],
+          "stretch": [
+            "Two transactions update the same row at the same time. What do isolation levels change, and how can a lost update still happen?",
+            "When would you deliberately denormalize a schema, and how would you keep the duplicated data consistent?",
+            "Explain how a B+ tree index keeps range queries fast even with millions of rows."
+          ]
+        }
+      },
+      {
+        "id": "os",
+        "label": "Operating Systems",
+        "keywords": ["os", "operating system*", "process*", "thread*", "deadlock*", "scheduling", "paging", "semaphore*", "mutex*", "kernel", "virtual memory"],
+        "questions": {
+          "foundation": [
+            "What is the difference between a process and a thread?",
+            "What happens during a context switch, and why is it expensive?",
+            "Explain virtual memory in simple terms. Why do operating systems use it?"
+          ],
+          "core": [
+            "State the four conditions required for a deadlock, and explain how you would break one of them.",
+            "Compare round robin, shortest job first and priority scheduling. Which one risks starvation?",
+            "What is a race condition? Show how a mutex or a semaphore prevents it."
+          ],
+          "stretch": [
+            "What is thrashing, how would you detect it on a running system, and what would you change?",
+            "Explain how paging with a TLB translates a virtual address. What happens on a TLB miss?",
+            "Design a thread-safe bounded buffer. How do you avoid both busy waiting and deadlock?"
+          ]
+        }
+      },
+      {
+        "id": "networks",
+        "label": "Computer Networks",
+        "keywords": ["network*", "tcp", "udp", "http*", "dns", "osi", "ip", "routing", "cn", "tls", "ssl", "socket*"],
+        "questions": {
+          "foundation": [
+            "What is the difference between TCP and UDP? Give a real application for each.",
+            "What happens, step by step, when you type a URL into the browser and press enter?",
+            "What does DNS do, and why is caching so important for it?"
+          ],
+          "core": [
+            "Walk me through the TCP three-way handshake, and explain why it needs three steps instead of two.",
+            "How does HTTPS protect data in transit? Explain the role of certificates.",
+            "What is the difference between a switch, a router and a load balancer?"
+          ],
+          "stretch": [
+            "How does TCP congestion control react to packet loss, and why does that matter for video calls?",
+            "Explain how NAT works and one problem it creates for peer-to-peer connections.",
+            "Compare HTTP/1.1, HTTP/2 and HTTP/3. What problem does QUIC solve?"
+          ]
+        }
+      },
+      {
+        "id": "dsa",
+        "label": "Data Structures & Algorithms",
+        "keywords": ["dsa", "data structure*", "algorithm*", "array*", "linked list*", "tree*", "graph*", "sorting", "dynamic programming", "dp", "recursion", "hashing", "heap*", "big o", "complexity"],
+        "questions": {
+          "foundation": [
+            "What is Big-O notation, and why do we usually care about the worst case?",
+            "Compare an array and a linked list for insertion, deletion and random access.",
+            "What is a hash map, and what happens when two keys collide?"
+          ],
+          "core": [
+            "Explain how binary search works and the precondition it depends on.",
+            "When would you choose BFS over DFS? Give a problem where the choice really matters.",
+            "What is dynamic programming? Explain it using a problem you have solved."
+          ],
+          "stretch": [
+            "Quicksort is O(n log n) on average but O(n squared) in the worst case. Why, and how do you avoid the worst case?",
+            "How does Dijkstra's algorithm work, and why does it fail with negative edge weights?",
+            "Design an LRU cache with O(1) get and put. Which data structures do you combine, and why?"
+          ]
+        }
+      },
+      {
+        "id": "oop",
+        "label": "OOP & Design Patterns",
+        "keywords": ["oop*", "object oriented", "polymorphism", "inheritance", "encapsulation", "abstraction", "design pattern*", "solid", "lld", "low level design", "class*"],
+        "questions": {
+          "foundation": [
+            "Explain the four pillars of object-oriented programming with a short example.",
+            "What is the difference between an abstract class and an interface?",
+            "What is polymorphism, and how does method overriding enable it?"
+          ],
+          "core": [
+            "Explain composition over inheritance. When can inheritance cause trouble in real code?",
+            "Pick two SOLID principles and show how violating them makes code harder to change.",
+            "Explain the Singleton pattern and why it is often called an anti-pattern."
+          ],
+          "stretch": [
+            "How would you use the Strategy pattern to remove a large switch statement? What are the trade-offs?",
+            "Explain dependency injection. How does it make code easier to test?",
+            "Design the classes for a parking lot system. Which responsibilities belong to which class?"
+          ]
+        }
+      },
+      {
+        "id": "system-design",
+        "label": "System Design",
+        "keywords": ["system design", "hld", "high level design", "scalab*", "load balanc*", "microservice*", "distributed", "caching", "cap theorem", "sharding", "architecture"],
+        "questions": {
+          "foundation": [
+            "What is the difference between vertical and horizontal scaling?",
+            "What does a load balancer do, and what happens if it goes down?",
+            "Why do systems use caching? Name one risk that caching introduces."
+          ],
+          "core": [
+            "How would you design a URL shortener? Start with the API and the data model.",
+            "Explain the CAP theorem using an example of a system that prefers availability.",
+            "When would you put a message queue between two services?"
+          ],
+          "stretch": [
+            "Design a rate limiter for a public API. Compare the token bucket and sliding window approaches.",
+            "How would you shard a database of users, and how would you handle a hot shard?",
+            "Design the notification system for a food delivery app that must never send duplicates."
+          ]
+        }
+      },
+      {
+        "id": "java-spring",
+        "label": "Java & Spring Boot",
+        "keywords": ["java", "spring*", "jvm", "hibernate", "jpa", "collections", "multithreading", "kotlin", "maven", "gradle"],
+        "questions": {
+          "foundation": [
+            "What is the difference between the JDK, the JRE and the JVM?",
+            "What problem does Spring Boot solve compared to plain Spring?",
+            "Explain the difference between double equals and the equals method in Java."
+          ],
+          "core": [
+            "Explain dependency injection and bean scopes in Spring. What is the default scope?",
+            "How does the Transactional annotation work, and why can calling a transactional method from the same class skip it?",
+            "Compare HashMap and ConcurrentHashMap. When is a plain HashMap unsafe?"
+          ],
+          "stretch": [
+            "What is the N plus one query problem in JPA, and how would you detect and fix it?",
+            "Explain how garbage collection works in the JVM and how you would investigate a memory leak.",
+            "How would you design global error handling for a REST API in Spring Boot?"
+          ]
+        }
+      },
+      {
+        "id": "web",
+        "label": "JavaScript & React",
+        "keywords": ["javascript", "js", "react*", "nextjs", "next js", "node*", "frontend", "front end", "html", "css", "typescript", "web", "dom", "angular", "vue"],
+        "questions": {
+          "foundation": [
+            "What is the difference between let, const and var in JavaScript?",
+            "What is the virtual DOM, and why does React use it?",
+            "Explain the difference between props and state in React."
+          ],
+          "core": [
+            "Explain the JavaScript event loop. Why does a resolved promise run before a setTimeout of zero?",
+            "What does useEffect do, and what bugs come from a wrong dependency array?",
+            "Compare client-side rendering and server-side rendering. When would you pick each?"
+          ],
+          "stretch": [
+            "A React page re-renders too often and feels slow. How do you find the cause and fix it?",
+            "Explain CORS. Why does the browser block a request that works fine in Postman?",
+            "How would you store authentication tokens in a web app, and which attacks are you defending against?"
+          ]
+        }
+      },
+      {
+        "id": "ml",
+        "label": "Machine Learning & AI",
+        "keywords": ["machine learning", "ml", "ai", "deep learning", "neural*", "nlp", "llm*", "data science", "regression", "classification", "transformer*", "model*"],
+        "questions": {
+          "foundation": [
+            "What is the difference between supervised and unsupervised learning?",
+            "What is overfitting, and how can you tell that it is happening?",
+            "Why do we split data into training, validation and test sets?"
+          ],
+          "core": [
+            "Explain the bias-variance trade-off with an example model.",
+            "When is accuracy a misleading metric? What would you use instead?",
+            "How does gradient descent work, and what does the learning rate control?"
+          ],
+          "stretch": [
+            "Explain how attention works in a transformer and why it replaced recurrent networks.",
+            "Your model does well offline but poorly in production. What could be going wrong?",
+            "How would you handle a heavily imbalanced dataset for fraud detection?"
+          ]
+        }
+      },
+      {
+        "id": "cloud",
+        "label": "Cloud & DevOps",
+        "keywords": ["cloud", "aws", "azure", "gcp", "devops", "docker", "kubernetes", "k8s", "ci cd", "cicd", "deployment*", "linux", "terraform", "container*"],
+        "questions": {
+          "foundation": [
+            "What is the difference between a container and a virtual machine?",
+            "What is CI/CD, and what problem does it solve for a team?",
+            "Explain IaaS, PaaS and SaaS with one example each."
+          ],
+          "core": [
+            "Walk me through what a Dockerfile does, layer by layer, for a Java or Node app.",
+            "What does Kubernetes add on top of Docker?",
+            "How would you roll out a new version of a service without downtime?"
+          ],
+          "stretch": [
+            "A production service got slow right after a deploy. How do you investigate using logs, metrics and traces?",
+            "How would you store secrets like API keys for a cloud deployment?",
+            "Design a backup and disaster recovery plan for a small SaaS database."
+          ]
+        }
+      }
+    ],
+    "generic": {
+      "foundation": [
+        "Explain {topic} in two or three sentences, as if to a first-year student.",
+        "Why does {topic} matter? Give one real-world situation where it is used.",
+        "What are the key terms someone must know before studying {topic}?",
+        "What is a common misconception about {topic}?"
+      ],
+      "core": [
+        "Walk me through how {topic} works internally, step by step.",
+        "What are the main trade-offs or limitations of {topic}?",
+        "Compare {topic} with one alternative approach. When would you choose each?",
+        "Describe a problem you could solve with {topic}, and how you would approach it."
+      ],
+      "stretch": [
+        "What breaks first when {topic} is pushed to a much larger scale, and how would you respond?",
+        "What edge cases in {topic} would an experienced interviewer expect you to know?",
+        "If you had to teach {topic} with a single example, which example would you choose and why?",
+        "What recent change in {topic} matters most, and what problem drove it?"
+      ]
+    }
+  },
+  "project": {
+    "foundation": [
+      "Give me a sixty-second overview of {project}: the problem, the users, and what it does.",
+      "What was your personal role in {project}, and which part are you most proud of?",
+      "Why did you choose this tech stack for {project}?",
+      "Walk me through the main user flow of {project} from start to finish."
+    ],
+    "core": [
+      "Explain the architecture of {project}. How do the components talk to each other?",
+      "What was the hardest bug or technical challenge in {project}, and how did you solve it?",
+      "How is data stored in {project}? Why did you design it that way?",
+      "How did you test {project}, and what would you test next?"
+    ],
+    "stretch": [
+      "If {project} suddenly had a hundred times more users, what would break first and how would you fix it?",
+      "What security risks does {project} have, and how do you mitigate them?",
+      "If you rebuilt {project} from scratch today, what would you do differently and why?",
+      "Which trade-off in {project} are you least comfortable with, and how would you defend it to a skeptical reviewer?"
+    ]
+  },
+  "hr": {
+    "foundation": [
+      "Tell me about yourself in under a minute, with a focus on why you fit a {role} role.",
+      "Why are you interested in working as a {role}?",
+      "What is one strength that would make you effective as a {role}? Back it with an example.",
+      "Describe a project or activity you are proud of and what you learned from it."
+    ],
+    "core": [
+      "Tell me about a time you disagreed with a teammate. What did you do, and what was the outcome?",
+      "Describe a situation where you missed a deadline or nearly did. How did you handle it?",
+      "Tell me about a time you had to learn something new very quickly.",
+      "Describe a time you received critical feedback. What did you change afterwards?"
+    ],
+    "stretch": [
+      "Tell me about a failure you owned. What would you do differently now?",
+      "Describe a time you took the lead without being asked. What was the measurable result?",
+      "Why should we pick you over another strong {role} candidate?",
+      "Where do you see yourself in three years, and how does this {role} role get you there?"
+    ]
+  },
+  "hints": {
+    "technical": [
+      "Open with a one-line definition, then give a concrete example.",
+      "Think about the trade-off: what does this approach gain, and what does it cost?",
+      "Explain it as input, process and output, then mention where it is used.",
+      "Compare it with an alternative you know, and say when you would pick each."
+    ],
+    "project": [
+      "Anchor your answer in one specific decision you made and why.",
+      "Use numbers if you can: users, data size, response time, hours saved.",
+      "Structure it as context, decision, the alternative you rejected, and the result."
+    ],
+    "hr": [
+      "Use STAR: Situation, Task, Action, Result. Spend most of your time on the Action.",
+      "Say 'I', not 'we', when describing what you did.",
+      "Finish with a measurable result or a clear lesson you still apply."
+    ]
+  },
+  "coach": {
+    "subjects": {
+      "technical": "on {topic}",
+      "project": "about your project, {project}",
+      "hr": "for a {role} role",
+      "mixed": "for a {role} role with a focus on {topic}"
+    },
+    "openers": {
+      "mentor": "Hi, I'm Ora, your AI interviewer. We'll go through {count} questions {subject}. Take a breath and think out loud. A good start matters more than a perfect answer.",
+      "panelist": "Hello, I'm Ora, an AI interviewer. We have {count} questions {subject}. Keep your answers structured and specific.",
+      "bar_raiser": "I'm Ora, an AI interviewer, and I'll hold a high bar today. {count} questions {subject}. Back every claim with reasoning."
+    },
+    "tone": {
+      "mentor": {
+        "excellent": "Excellent. That was a confident, well-reasoned answer.",
+        "good": "Good answer. You're clearly on the right track.",
+        "fair": "A decent start. Let's build on it.",
+        "weak": "That one was tough, and that's okay.",
+        "skipped": "No problem passing on that one. Let's keep the momentum."
+      },
+      "panelist": {
+        "excellent": "Strong answer, accurate and convincing.",
+        "good": "Solid answer, with room for more depth.",
+        "fair": "Partially there. Some key points were missing.",
+        "weak": "That answer didn't cover the essentials.",
+        "skipped": "Noted. You passed on that question."
+      },
+      "bar_raiser": {
+        "excellent": "That holds up. Good.",
+        "good": "Acceptable, but I expected more rigor.",
+        "fair": "Too thin. You asserted more than you justified.",
+        "weak": "Not convincing. The core idea is missing.",
+        "skipped": "Passing in a real interview costs you. Moving on."
+      }
+    },
+    "strength": {
+      "substance": "You covered the ideas that mattered.",
+      "clarity": "Your structure was easy to follow.",
+      "depth": "Nice use of reasoning and examples."
+    },
+    "weakness": {
+      "substance": "Stay closer to what was actually asked.",
+      "clarity": "Tighten the structure so it's easier to follow.",
+      "depth": "It needed a clear why or a concrete example."
+    },
+    "tips": {
+      "skipped": "Even a partial answer beats a pass: define the core idea, then say how you'd find out the rest.",
+      "polish": "Great shape. Now try saying it in half the time without losing your example.",
+      "rambling": "Lead with the answer, then support it. Aim to finish within 90 seconds.",
+      "tooShort": "Aim for 60 to 90 seconds: a one-line answer, how it works, and one example.",
+      "offTopic": "Anchor your answer in the question's key ideas: {keywords}.",
+      "fillers": "You used {fillers} filler words. Replace them with a short, silent pause.",
+      "longSentences": "Break long sentences into three beats: claim, reason, example.",
+      "signpost": "Signpost your answer with 'first', 'second' and 'finally' so it's easy to follow.",
+      "depthTechnical": "Explain the why: add one trade-off and one concrete example.",
+      "depthProject": "Name a decision you made, the alternative you rejected, and why.",
+      "depthHr": "Use STAR (Situation, Task, Action, Result) and end with a measurable result."
+    },
+    "hintPrefix": "Key ideas to touch: {keywords}.",
+    "outlines": {
+      "leadWithKeywords": "Lead with a one-line answer that covers {keywords}.",
+      "lead": "Lead with a direct, one-line answer.",
+      "technical": [
+        "Explain how it works, step by step.",
+        "Give a concrete example or a real use case.",
+        "Close with one trade-off or limitation."
+      ],
+      "project": [
+        "Set the context: the problem and your role.",
+        "Explain the decision you made and why.",
+        "Name the alternative you rejected.",
+        "Close with the result, ideally with a number."
+      ],
+      "hr": [
+        "Situation: set the scene in a sentence or two.",
+        "Task: what you were responsible for.",
+        "Action: what you did, in the first person.",
+        "Result: the outcome and what you learned."
+      ]
+    },
+    "report": {
+      "bands": [
+        { "min": 8.5, "label": "Interview-ready" },
+        { "min": 7, "label": "Strong" },
+        { "min": 5.5, "label": "Getting there" },
+        { "min": 0, "label": "Needs more reps" }
+      ],
+      "highlights": {
+        "bestAnswer": "Your best answer was Q{index} ({score}/10). Study what worked there.",
+        "strength": {
+          "substance": "You consistently covered the ideas interviewers listen for.",
+          "clarity": "Your answers were well structured and easy to follow.",
+          "depth": "You backed your answers with reasoning and examples."
+        },
+        "pace": "Comfortable speaking pace at about {wpm} words per minute.",
+        "noFillers": "No filler words detected in your spoken answers.",
+        "confidenceUp": "Your confidence rose by {delta} points after this interview."
+      },
+      "focus": {
+        "weakness": {
+          "substance": "Stay on target: address the exact question before expanding.",
+          "clarity": "Work on structure: lead with the answer, then support it.",
+          "depth": "Go deeper: add trade-offs, reasons and concrete examples."
+        },
+        "fast": "You spoke quickly (about {wpm} wpm). Slow down around key terms.",
+        "slow": "Your pace was slow (about {wpm} wpm). Aim for 120 to 160 wpm.",
+        "fillers": "{fillers} filler words overall. Swap them for short pauses.",
+        "skipped": "You passed on {count} question(s). In the real room, attempt a partial answer.",
+        "hints": "You used {count} hint(s). Revisit those topics before the real round.",
+        "confidenceDown": "Confidence dipped after this round, which is normal early on. Repeat it once more."
+      },
+      "empty": {
+        "highlight": "You showed up and practiced out loud. That's the hardest step.",
+        "focus": "Answer a few more questions to unlock personalised focus areas."
+      }
+    }
+  },
+  "lexicon": {
+    "fillers": ["um", "umm", "ummm", "uh", "uhh", "uhm", "erm", "hmm", "hmmm", "you know", "i mean", "basically", "literally", "sort of", "kind of"],
+    "connectors": ["because", "since", "therefore", "thus", "hence", "so that", "which means", "that means", "as a result", "due to", "in order to", "however", "whereas", "although", "on the other hand", "trade off", "tradeoff", "compared to", "in contrast", "instead of", "the reason", "this is why", "depends on"],
+    "examples": ["for example", "for instance", "such as", "e g", "say we", "suppose", "imagine", "consider", "in my project", "in our project", "real world", "in practice", "lets say", "like when"],
+    "signposts": ["first", "firstly", "second", "secondly", "third", "thirdly", "finally", "lastly", "to summarize", "in summary", "in short", "to conclude", "overall", "next"],
+    "star": {
+      "situation": ["when i was", "at my", "during my", "during our", "in my internship", "in college", "our team", "we had", "there was", "the situation", "in my last", "in my previous"],
+      "action": ["i decided", "i proposed", "i led", "i built", "i created", "i organized", "i organised", "i spoke", "i talked", "i took", "i reached out", "i suggested", "i implemented", "i started", "i set up", "i volunteered", "my approach"],
+      "result": ["as a result", "which led", "resulted", "the result", "outcome", "in the end", "we delivered", "we shipped", "improved", "reduced", "increased", "saved", "i learned", "i learnt", "lesson"]
+    },
+    "quantifiers": ["percent", "percentage", "twice", "double", "half", "hundred", "thousand", "million", "lakh", "crore"],
+    "stopwords": ["about", "above", "after", "again", "against", "also", "answer", "approach", "been", "before", "being", "below", "best", "better", "between", "both", "briefly", "came", "case", "cases", "choose", "come", "common", "compare", "could", "describe", "detail", "details", "difference", "different", "does", "doing", "done", "each", "else", "even", "every", "example", "explain", "first", "from", "give", "going", "good", "happen", "happened", "happens", "have", "having", "help", "helps", "here", "important", "into", "just", "kind", "know", "like", "main", "make", "many", "matter", "matters", "mean", "means", "more", "most", "much", "must", "need", "only", "other", "over", "part", "parts", "pick", "quick", "quickly", "real", "really", "result", "role", "same", "should", "show", "simple", "situation", "some", "someone", "something", "sort", "step", "such", "sure", "tell", "term", "terms", "than", "that", "their", "them", "then", "there", "these", "they", "thing", "things", "think", "this", "those", "through", "time", "under", "used", "using", "very", "walk", "want", "well", "were", "what", "when", "where", "which", "while", "whom", "will", "with", "within", "without", "words", "work", "works", "world", "would", "your", "yours", "yourself"]
+  }
+}

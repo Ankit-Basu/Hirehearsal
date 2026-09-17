@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    # Point DATABASE_URL at PostgreSQL in production, e.g. jdbc:postgresql://host:5432/hirehearsal
+    url: ${DATABASE_URL:jdbc:h2:file:./data/hirehearsal}
+    username: ${DATABASE_USERNAME:sa}
+    password: ${DATABASE_PASSWORD:}
+  h2:
+    console:
+      enabled: false
+
+hirehearsal:
+  security:
+    # No default in production: the app refuses to start without a real secret.
+    jwt-secret: ${HIREHEARSAL_JWT_SECRET}

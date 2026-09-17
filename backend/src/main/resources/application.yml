@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: hirehearsal-api
+  config:
+    # Local secrets (e.g. GROQ_API_KEYS) live in backend/.env, which is gitignored.
+    import: optional:file:.env[.properties]
+  profiles:
+    default: dev
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  port: ${PORT:8085}
+
+hirehearsal:
+  llm:
+    base-url: ${HIREHEARSAL_LLM_BASE_URL:https://api.groq.com/openai/v1}
+    model: ${HIREHEARSAL_LLM_MODEL:openai/gpt-oss-120b}
+    # One key or a comma-separated list; the gateway rotates through them.
+    api-keys: ${GROQ_API_KEYS:${GROQ_API_KEY:}}
+    timeout: 20s
+    temperature: 0.4
+    # Reasoning models (gpt-oss) accept low/medium/high. Set it blank for models that reject the parameter.
+    reasoning-effort: ${HIREHEARSAL_LLM_REASONING_EFFORT:low}
+  security:
+    jwt-secret: ${HIREHEARSAL_JWT_SECRET:hirehearsal-dev-secret-change-me-before-deploying-0001}
+    token-ttl: 7d
+  cors:
+    allowed-origins: ${HIREHEARSAL_CORS_ORIGINS:http://localhost:3000}
+  rate-limit:
+    enabled: true
+    interview-requests: 90
+    interview-window: 10m
+    auth-requests: 12
+    auth-window: 1m
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
