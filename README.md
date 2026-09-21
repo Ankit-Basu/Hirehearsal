@@ -122,6 +122,11 @@ one scored by the API.
   `Retry-After` window and a 401/403 parks it longer, then the next key is tried.
 - **Content never depends on JavaScript animation.** Questions, scores and panels animate with CSS, so a
   throttled frame loop can never leave the interview invisible.
+- **The living background is cheap.** The cursor-reactive dot field repaints only the patch around dots
+  that are moving and stops once they settle, the aurora renders at 30fps, and the cursor glow moves on
+  the compositor instead of repainting the page. Entrance animations do not keep their final keyframe,
+  because a lingering filter or opacity on an ancestor would cut the frosted glass off from what is
+  behind it.
 
 ## Tech stack
 
