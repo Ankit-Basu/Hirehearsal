@@ -11,8 +11,10 @@ export function RevealText({
   as: Tag = 'p',
   className,
   stagger = 45,
+  accentLast = false,
 }: {
   text: string;
+  accentLast?: boolean;
   as?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
   className?: string;
   stagger?: number;
@@ -24,7 +26,7 @@ export function RevealText({
       {words.map((word, index) => (
         <span
           key={`${word}-${index}`}
-          className="reveal-word"
+          className={cn('reveal-word', accentLast && index === words.length - 1 && 'text-gradient-animated')}
           style={{ animationDelay: `${Math.min(index * stagger, 900)}ms` }}
         >
           {word}

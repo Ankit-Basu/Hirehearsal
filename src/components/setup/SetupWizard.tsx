@@ -89,6 +89,8 @@ export function SetupWizard() {
     const fromQuery: Partial<SetupState> = {};
     const track = params.get('track');
     if (track && track in TRACKS) fromQuery.track = track as Track;
+    const persona = params.get('persona');
+    if (persona && persona in PERSONAS) fromQuery.persona = persona as Persona;
     const topic = params.get('topic');
     if (topic) fromQuery.topic = topic;
     const role = params.get('role');

@@ -9,6 +9,7 @@ import { EngineProvider } from '@/lib/engine-status';
 import { SettingsProvider } from '@/lib/settings';
 import { cn } from '@/lib/cn';
 import { Background } from './Background';
+import { CursorGlow } from './CursorGlow';
 import { Footer } from './Footer';
 import { MobileTabBar, Navbar } from './Navbar';
 import { SettingsSheet } from './SettingsSheet';
@@ -21,6 +22,7 @@ function Chrome({ children }: { children: ReactNode }) {
   return (
     <>
       <Background />
+      {!inRoom && <CursorGlow />}
       <Navbar onOpenSettings={() => setSettingsOpen(true)} />
       <main className={cn('relative z-10 px-4 pt-24', inRoom ? 'pb-8' : 'pb-24 sm:pb-8')}>{children}</main>
       {!inRoom && <Footer />}

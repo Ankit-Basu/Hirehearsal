@@ -2,7 +2,7 @@
 
 // SoftAurora from React Bits (https://reactbits.dev), TS + Tailwind variant.
 // Copyright (c) 2026 David Haz. MIT + Commons Clause, see ./LICENSE.md.
-// Adapted for Hirehearsal: a resolutionScale prop so the full-screen shader costs far less GPU time.
+// Adapted for Hirehearsal: resolutionScale and maxFps props so the full-screen shader costs far less GPU time.
 
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 import { useEffect, useRef } from 'react';
@@ -25,6 +25,8 @@ interface SoftAuroraProps {
   lightMode?: boolean;
   /** Internal render scale; the canvas is upscaled by CSS. */
   resolutionScale?: number;
+  /** Frame-rate cap. A slow aurora looks the same at 30fps, and glass above it re-blurs half as often. 0 = uncapped. */
+  maxFps?: number;
 }
 
 function hexToVec3(hex: string): [number, number, number] {
@@ -205,7 +207,8 @@ export default function SoftAurora({
   enableMouseInteraction = true,
   mouseInfluence = 0.25,
   lightMode = false,
-  resolutionScale = 1
+  resolutionScale = 1,
+  maxFps = 0
 }: SoftAuroraProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -278,9 +281,14 @@ export default function SoftAurora({
     }
 
     let animationFrameId: number;
+    const frameInterval = maxFps > 0 ? 1000 / maxFps : 0;
+    let lastFrame = -Infinity;
 
     function update(time: number) {
       animationFrameId = requestAnimationFrame(update);
+      // A millisecond of slack so a 60Hz display lands on every other frame rather than drifting.
+      if (time - lastFrame < frameInterval - 1) return;
+      lastFrame = time;
       program.uniforms.uTime.value = time * 0.001;
 
       if (enableMouseInteraction) {
@@ -307,7 +315,7 @@ export default function SoftAurora({
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [speed, scale, brightness, color1, color2, noiseFrequency, noiseAmplitude, bandHeight, bandSpread, octaveDecay, layerOffset, colorSpeed, enableMouseInteraction, mouseInfluence, lightMode, resolutionScale]);
+  }, [speed, scale, brightness, color1, color2, noiseFrequency, noiseAmplitude, bandHeight, bandSpread, octaveDecay, layerOffset, colorSpeed, enableMouseInteraction, mouseInfluence, lightMode, resolutionScale, maxFps]);
 
   return <div ref={containerRef} className="w-full h-full" />;
 }

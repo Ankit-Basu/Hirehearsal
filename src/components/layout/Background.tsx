@@ -5,10 +5,14 @@ import { usePathname } from 'next/navigation';
 import { WebGLBoundary } from '@/components/ui/WebGLBoundary';
 import { cn } from '@/lib/cn';
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery';
+import { DotField } from './DotField';
 
 const SoftAurora = dynamic(() => import('@/components/reactbits/SoftAurora'), { ssr: false });
 
-/** Slow aurora light behind the frosted panels. Dimmed in the interview room to reduce distraction. */
+/**
+ * Slow aurora light and a cursor-reactive dot grid behind the frosted panels. Both stay out of the
+ * interview room to reduce distraction.
+ */
 export function Background() {
   const pathname = usePathname();
   const reducedMotion = usePrefersReducedMotion();
@@ -32,11 +36,14 @@ export function Background() {
               layerOffset={0.35}
               enableMouseInteraction={false}
               resolutionScale={0.6}
+              maxFps={30}
             />
           </div>
         </WebGLBoundary>
       )}
       <div className="absolute inset-0 bg-[radial-gradient(130%_90%_at_50%_0%,transparent_25%,var(--color-canvas)_88%)]" />
+      {/* Drawn above the vignette so the grid reads evenly across the screen. */}
+      {!dim && <DotField />}
     </div>
   );
 }

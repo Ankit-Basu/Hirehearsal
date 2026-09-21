@@ -112,7 +112,8 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     // Failsafe: content must never stay hidden if the trigger never fires
     // (background tab on load, resize race, reduced-motion environments).
     const failsafe = window.setTimeout(() => {
-      if (tl.progress() === 0) tl.play();
+      // Only rescue content that is already on screen; anything below the fold waits for its scroll.
+      if (tl.progress() === 0 && el.getBoundingClientRect().top < window.innerHeight) tl.play();
     }, 1600);
 
     return () => {
